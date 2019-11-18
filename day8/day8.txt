@@ -1,0 +1,26 @@
+1.文件以什么编码方式储存的，就应该以什么方式打开。否则会出现乱码。
+
+2.rb用法：
+非文字类的文件需要读取时；上传，下载，存储文件，亲自去储存的时候，并不是通过借助于软件。
+
+3.wb用法：需要先将str转换成bytes类型
+f=open("log",mode="wb")
+f.write("诗歌散文戏曲".encode("utf-8"))
+f.close()
+
+4.写读r+
+# 写读(看光标，写覆盖写入，剩余的读出来）
+f=open("log",mode="r+",encoding="utf-8")
+f.write("abc")
+print(f.read())
+f.close()
+
+5.字符：你能看到的这段文字的最小单位
+read读出来的都是字符。
+seek是按照字节定光标，一个字母一个字节，一个中文是三个字节。
+f.tell() 告诉你光标的位置
+f.readline()读取一行
+f.readlines()每一行当成列表中的一个元素，添加到列表中
+
+6.with open("log",mode="r+",encoding="utf-8") as f1,open("log",mode="r+",encoding="utf-8") as f2:
+提倡使用 “with +句柄 +as +变量名”，优点：1.可以同时操作多个文件，2.不用close.
